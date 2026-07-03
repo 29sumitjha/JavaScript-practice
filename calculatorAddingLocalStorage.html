@@ -61,25 +61,36 @@
         <button onclick="
             calculation = eval(calculation);
             console.log(calculation);
+
+            localStorage.setItem('calculationStore', calculation);
         ">=</button>
         <button onclick="
             updateCalculation('/');
         ">/</button>
     </p>
 
-    <button onclick="
-        console.log('Cleared.');
-    ">
-        Clear
-    </button>
+    <p>
+        <button onclick="
+            calculation = '';
+            console.log(calculation);
+            
+            localStorage.setItem('calculationStore', calculation);
+        ">
+            Clear
+        </button>
+    </p>
 
     <script>
-        let calculation = "";
+        let calculation = localStorage.getItem('calculationStore') || '';
 
         function updateCalculation(pressedButton){
             calculation += pressedButton;
             console.log(calculation);
+            localStorage.setItem('calculationStore',calculation);
+        
         }
+
+        
 
 
         
