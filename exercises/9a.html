@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+</head>
+<body>
+    <button>9a</button>
+    <button class="js-nine-b">9b</button>
+    <hr>
+
+    <button onclick="
+        flipCoinGame('Heads');
+    ">heads</button>
+
+    <button onclick="
+        flipCoinGame('Tails');
+    ">tails</button>
+
+    <p class="js-player-choice">
+        
+    </p>
+    <hr>
+
+
+    <input placeholder="Name" class="js-name-input" onkeydown="
+        handleNameSubmitKeyDown(event);
+    ">
+
+    <button onclick="
+        handleNameSubmitButton();
+    ">Submit</button>
+
+    <p class="js-name-display"></p>
+
+    <script>
+        //9a
+        console.log(document.querySelector('button'));
+        //9b
+        document.querySelector('.js-nine-b').innerHTML = '9b done!';
+
+        //9c
+        function flipCoinGame(guess){
+            if(guess === 'Heads'){
+                document.querySelector('.js-player-choice').innerHTML = 'You chose: Heads';
+                //console.log('You chose: Heads');
+            }
+            else{
+                document.querySelector('.js-player-choice').innerHTML = 'You chose: Tails';
+            }
+        }
+
+        //9d to 9e
+        function handleNameSubmitKeyDown(event){
+            if(event.key === 'Enter'){
+                handleNameSubmitButton();
+            }
+            else{
+                console.log(event.key);
+            }
+        }
+        function handleNameSubmitButton(){
+            const inputElement = document.querySelector('.js-name-input');
+            const inputValue = inputElement.value;
+
+            document.querySelector('.js-name-display').innerHTML = `Your name is: ${inputValue}`;
+        }
+        
+    </script>
+</body>
+</html>
