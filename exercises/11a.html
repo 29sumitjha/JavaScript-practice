@@ -176,6 +176,50 @@
         }
         console.log(countWords(wordsArray));
 
+        //11o
+        const array11 = ['hello','search','world','good', 'search'];
+
+        let index = -1;
+
+        for(let i=0; i<array11.length; i++){
+            if(array11[i] === 'search'){
+                index = i;
+                break;
+            }
+        }
+        console.log(index);
+
+        //11q
+        function findIndex(array, word){
+            let index = -1;
+            for(let i=0; i<array.length; i++){
+                if(array[i] === word){
+                    index = i;
+                    break;
+                }
+            }
+            console.log(index);
+        }
+        findIndex(['hello','search','world','good', 'search'], 'search');
+        findIndex(['hello','search','world','good', 'search'], 'parrot');
+
+        //11r to 11s
+        function removeEggs(food){
+            let result = [];
+            let eggRemoved = 0;
+            for(let i=0; i<food.length; i++){
+                
+                if(food[i] === 'egg' && eggRemoved < 2){
+                    eggRemoved++;
+                    continue;
+                }
+                result.push(food[i]);
+            }
+            return result;
+        }
+        console.log(removeEggs(['egg', 'apple', 'banana', 'egg', 'egg', 'sweet patato','egg']));
+
+
     </script>
     
     
