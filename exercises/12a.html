@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="js-title">App</title>
+</head>
+<body>
+    <!-- 12c -->
+    <button class="js-start-button" onclick="
+        changeButtonText();
+    ">Start</button>
+
+    <!-- 12e -->
+    <button class="js-add-to-cart-button" onclick="
+    addToCartButton();
+    ">Add to cart</button>
+    <p class="js-show-added-message"></p>
+
+    <!-- 12h -->
+    <button onclick="
+        messages++;
+        displayNotification();
+    ">Add</button>
+    <button onclick="
+        if (messages > 0) {
+            messages--;
+            if (messages === 0) {
+            stopNotification();
+            }
+        }
+
+    ">Remove</button>
+
+    <script>
+        //12a
+        const add = function(){
+            console.log(2+3);
+        }
+        console.log(add);
+        add();
+        add();
+
+        //12b
+        function runTwice(fun){
+            fun();
+            fun();
+        }
+        runTwice(function(){
+            console.log('12b');
+        })
+        runTwice(add);
+
+
+        //12c to 12d
+        function changeButtonText(){
+            const startButton = document.querySelector('.js-start-button');
+
+            startButton.innerHTML = 'Loading...';
+
+            setTimeout(function(){
+                startButton.innerHTML = 'Finished!';
+            }, 1000);
+        }
+
+        //12e to 12f
+        let timeoutId;
+
+        function addToCartButton(){
+            const messageElement = document.querySelector('.js-show-added-message');
+            messageElement.innerHTML = 'Added';
+
+            clearTimeout(timeoutId);
+          
+            timeoutId = setTimeout(function(){
+                messageElement.innerHTML = '';
+            }, 2000);
+        }
+
+        //12g to 12i
+        let messages = 2;
+        let intervalId;
+        let isDisplayingNotification;
+
+        function displayNotification(){
+            if (isDisplayingNotification) {
+                return;
+            }
+
+            isDisplayingNotification = true;
+
+            intervalId = setInterval(function(){
+                if (document.title === 'App') {
+                    document.title = `(${messages}) New messages`;
+                } 
+                else{
+                    document.title = 'App';
+                }
+            }, 1000);
+        }
+
+        function stopNotification() {
+            isDisplayingNotification = false;
+
+            clearInterval(intervalId);
+            document.title = 'App';
+        }
+        
+
+    </script>
+</body>
+</html>

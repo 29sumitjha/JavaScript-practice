@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions</title>
+</head>
+<body>
+    <script>
+        // function greeting(){
+        //     console.log('hello');
+        // }
+        // greeting();
+
+        /*
+        //1. FUNCTIONS ARE VALUES : 
+
+            //passing function into variable:
+
+                // const function1 = function greeting(){
+                //     console.log('hello2');
+                // };
+
+                const function1 = function(){
+                    console.log('hello2');
+                };
+                console.log(function1); //prints the while function
+                console.log(typeof function1); //function
+                function1(); //hello2
+
+            //passing function into object
+                const object1 = {
+                    num: 2,
+                    fun: function (){
+                        console.log('hello3');
+                    }
+                }
+                object1.fun();
+
+            //passing function into function
+                function display(param){
+                    console.log(param);
+                }
+                display(2);
+
+                function run(param){
+                    param();
+                }
+                run(function (){
+                    console.log('hello4');
+                });
+
+        */
+
+        /*
+        //PRACTICAL EXAPMLES (USING FUNCTIONS AS VALUES)
+        setTimeout(function(){
+            console.log('timeout');
+        },3000);
+
+        console.log('next line');
+
+        setInterval(function(){
+            console.log('interval');
+        },3000);
+
+        console.log('next line 2');
+        */
+
+        //MORE FEATURES OF FUNCTIONS AS VALUE
+            //another way to loop through an array [forEach() method]:
+            [
+                'make dinner',
+                'wash dishes',
+                'watch youtube'
+            ].forEach(function(value, index){
+
+                //In foreach() method we cannot use "continue", so "return" does the same thing as continue.
+                if(value === 'wash dishes'){
+                    return;
+                }
+                console.log(index);
+                console.log(value);
+            });
+
+    </script>
+</body>
+</html>
