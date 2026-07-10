@@ -7,14 +7,10 @@
 </head>
 <body>
     <!-- 12c -->
-    <button class="js-start-button" onclick="
-        changeButtonText();
-    ">Start</button>
+    <button class="js-start-button">Start</button>
 
     <!-- 12e -->
-    <button class="js-add-to-cart-button" onclick="
-    addToCartButton();
-    ">Add to cart</button>
+    <button class="js-add-to-cart-button">Add to cart</button>
     <p class="js-show-added-message"></p>
 
     <!-- 12h -->
@@ -53,17 +49,25 @@
 
 
         //12c to 12d
+        document.querySelector('.js-start-button')
+            .addEventListener('click',()=>{
+                changeButtonText();
+            })
         function changeButtonText(){
             const startButton = document.querySelector('.js-start-button');
 
             startButton.innerHTML = 'Loading...';
 
-            setTimeout(function(){
+            setTimeout(()=>{
                 startButton.innerHTML = 'Finished!';
             }, 1000);
         }
 
         //12e to 12f
+        document.querySelector('.js-add-to-cart-button')
+            .addEventListener('click',()=>{
+                addToCartButton();
+            })
         let timeoutId;
 
         function addToCartButton(){
@@ -72,7 +76,7 @@
 
             clearTimeout(timeoutId);
           
-            timeoutId = setTimeout(function(){
+            timeoutId = setTimeout(()=>{
                 messageElement.innerHTML = '';
             }, 2000);
         }
@@ -89,7 +93,7 @@
 
             isDisplayingNotification = true;
 
-            intervalId = setInterval(function(){
+            intervalId = setInterval(()=>{
                 if (document.title === 'App') {
                     document.title = `(${messages}) New messages`;
                 } 
@@ -106,6 +110,45 @@
             document.title = 'App';
         }
         
+        //12j - 12k
+        const multiply = (a,b) => a * b;
+        console.log(multiply(12,2));
+
+        //12l
+        function countPositive(nums){
+            let count = 0;
+            nums.forEach((value)=>{
+                if(value >=0){
+                    count++;
+                }
+            });
+            return count;
+        }
+        console.log(countPositive([1,2,-3,-4,8,9,0,-47,4,-9]));
+
+        //12m
+        function addNum(array, num){
+            return array.map(value => value + num);
+            
+        }
+        console.log(addNum([1,2,3],4));
+
+        //12n, 12o
+        function removeEgg(foods){
+            let eggCount = 0;
+            const newFood = foods.filter((value) =>{
+                if(value === 'egg' && eggCount < 2){
+                    eggCount++;
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            })
+            return newFood;
+        }
+        console.log(removeEgg(['egg','banana','apple','egg','egg','tomato','sweet potato', 'egg','corn']));
+
 
     </script>
 </body>

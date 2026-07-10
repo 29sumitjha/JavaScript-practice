@@ -12,7 +12,7 @@ let intervalId;
 function autoPlay(){
     
     if(!isAutoPlaying){
-        document.querySelector('.js-auto-play').innerHTML = 'Stop Auto Play';
+        document.querySelector('.js-auto-play').innerHTML = 'Stop Playing';
         intervalId = setInterval(() => {
             const playerMove = pickComputerMove();
             playGame(playerMove);
@@ -27,6 +27,43 @@ function autoPlay(){
         isAutoPlaying = false;
     }
 }
+
+function resetScore(){
+    score.wins = 0;
+    score.losses = 0;
+    score.ties = 0;
+    localStorage.removeItem('score');
+    updateScoreElement();
+}
+
+function showResetConfirmation() {
+  document.querySelector('.js-reset-confirmation')
+    .innerHTML = `
+      Are you sure you want to reset the score?
+      <button class="js-reset-confirm-yes reset-confirm-button">
+        Yes
+      </button>
+      <button class="js-reset-confirm-no reset-confirm-button">
+        No
+      </button>
+    `;
+    document.querySelector('.js-reset-confirm-yes')
+    .addEventListener('click', () => {
+      resetScore();
+      hideResetConfirmation();
+    });
+  
+  document.querySelector('.js-reset-confirm-no')
+    .addEventListener('click', () => {
+      hideResetConfirmation();
+    });
+}
+
+function hideResetConfirmation() {
+  document.querySelector('.js-reset-confirmation')
+    .innerHTML = '';
+}
+
 //using addEventListener instead of onclick
 document.querySelector('.js-rock-button')
     .addEventListener('click', () => {
@@ -48,13 +85,24 @@ document.querySelector('.js-auto-play')
         autoPlay();
     });
 
+document.body
+    .addEventListener('keydown', (event)=>{
+        if(event.key === 'a'){
+            autoPlay();
+        }
+    });
+
 document.querySelector('.reset-score-button')
     .addEventListener('click', ()=>{
-        score.wins = 0;
-        score.losses = 0;
-        score.ties = 0;
-        localStorage.removeItem('score');
-        updateScoreElement();
+        showResetConfirmation()
+    });
+
+
+document.body
+    .addEventListener('keydown', (event)=>{
+        if(event.key === 'Backspace'){
+            showResetConfirmation();
+        }
     });
 
 
@@ -135,8 +183,8 @@ function playGame(playerMove){
     document.querySelector('.js-result').innerHTML = result;
 
     document.querySelector('.js-moves').innerHTML = `You
-    <img class="move-icon" src="images/${playerMove}-emoji.png">
-    <img class="move-icon" src="images/${computerMove}-emoji.png">
+    <img class="move-icon" src="/images/${playerMove}-emoji.png">
+    <img class="move-icon" src="/images/${computerMove}-emoji.png">
     Computer`;
 
     // alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}.
